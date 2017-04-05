@@ -1,0 +1,1 @@
+java -cp C:\Users\310235474\git\GoogleHomeBL\HueGoogleHome\bin;C:\Users\310235474\git\GoogleHomeBL\HueGoogleHome\libs/* HueGoogleHome
