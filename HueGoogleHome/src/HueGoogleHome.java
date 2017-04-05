@@ -93,10 +93,10 @@ public class HueGoogleHome
             CounterExecution++;
             System.out.println(CounterExecution+": Counter Execution");
           }
-    	  bh.connectToBridgeWithIp(ipAddressStored,connectCallback);
+    	  bh.connectToBridgeWithIp(ipAddressStored,userNameStored,connectCallback);
       }else {
-    	  bh.connectToBridgeWithIp("192.168.84.47",connectCallback);
-    	  //bh.connectToBridgeWithIp("192.168.84.47"," ",connectCallback);
+    	  //bh.connectToBridgeWithIp("192.168.84.47",connectCallback);
+    	  bh.connectToBridgeWithIp("192.168.84.47"," ",connectCallback);
     	    TimeUnit.SECONDS.sleep(5);
     	   // System.out.println("Hue Bridge connection is done");
       }
@@ -116,7 +116,7 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
 	
       driver.manage().deleteAllCookies();
       driver.get("https://developers.google.com/actions/tools/web-simulator");
-      
+      System.out.println("Maximising window");
       driver.manage().window().maximize();
       System.out.println("Chrome Window Maximized");
       Screen screen = new Screen();
