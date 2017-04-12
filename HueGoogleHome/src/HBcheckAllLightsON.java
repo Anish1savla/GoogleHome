@@ -1,3 +1,4 @@
+import com.philips.lighting.hue.sdk.PHHueSDK;
 import com.philips.lighting.model.PHBridge;
 import com.philips.lighting.model.PHBridgeResourcesCache;
 import com.philips.lighting.model.PHLight;
@@ -23,40 +24,69 @@ public class HBcheckAllLightsON
   public String Status;
   public String sendtoHTMLturnOFFAll;
   public String Remarks;
-  
+  private PHHueSDK phHueSDK;
   public String HBTurnONAllLight(PHBridge bridge)
     throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException
   {
 	  
 	  System.out.println("/**************************** INSIDE TURN ON ALL LIGHTS **********************************/");
-    TimeUnit.SECONDS.sleep(27);
+    //TimeUnit.SECONDS.sleep(27);
+	
+	  
+	long start_time = System.currentTimeMillis();
+	
+			
+    PHBridgeResourcesCache cache1 = bridge.getResourceCache();
     
-    PHBridgeResourcesCache cache = bridge.getResourceCache();
-    List<PHLight> allLights = cache.getAllLights();
+    List<PHLight> allLights1 = cache1.getAllLights();
+    int numberoflights=allLights1.size();
+    long wait_time = (numberoflights*2000)+10000+5000;
+    long end_time = start_time+wait_time;
+    System.out.println("Wait Time:"+wait_time);
+    System.out.println("End_Time:"+end_time);
+    System.out.println("Start time:"+start_time);
+    
     List<String> lightList = new ArrayList<String>();
     List<String> nonReachablelightList = new ArrayList<String>();
     
-    for (PHLight lights : allLights)
-    {
-      PHLightState lightState = lights.getLastKnownLightState();
-      Boolean x = lightState.isOn();
-      System.out.println(lights.getName());
-      System.out.println(x);
-      
-      Boolean y = lightState.isReachable();
-      
-      if (x==false && y==true) {
+/*    do{
+    	System.out.println("Inside DO while");
+    }while((System.currentTimeMillis()-start_time)<wait_time);*/
+    
+    do{
+    	PHBridgeResourcesCache cache2 = bridge.getResourceCache();
         
-          lightList.add(lights.getName());
-          
-          counter += 1;
-        }
-        else if (y==false)
+        List<PHLight> allLights = cache2.getAllLights();
+        counter++;
+        for (PHLight lights : allLights)
         {
-          nonReachablelightList.add(lights.getName());
-        }
-      
-    }
+    	
+        	PHLightState lightState = lights.getLastKnownLightState();
+        	Boolean x = lightState.isOn();
+	      System.out.println(lights.getName());
+	      System.out.println(x);
+	      
+	      Boolean y = lightState.isReachable();
+	      
+	      if (x==false && y==true && lightList.contains(lights.getName())==false) {
+	        
+	          lightList.add(lights.getName());
+	          
+	          
+	          System.out.println("light list size in if:"+lightList.size());
+	        }
+	        else if (y==false)
+	        {
+	          nonReachablelightList.add(lights.getName());
+	        }else if (x==true) {
+	        	lightList.remove(lights.getName());
+	        }
+	      
+	    }
+        System.out.println("Light list size:"+lightList.size());
+	    System.out.println("System time in mili seconds:"+System.currentTimeMillis());
+	    System.out.println("Counter Value:"+counter);
+   }while(((System.currentTimeMillis()-start_time)<wait_time) && lightList.size()!=0);
     
     
     if (lightList.isEmpty())
@@ -117,7 +147,7 @@ public class HBcheckAllLightsON
     }catch (Exception e){
     	e.printStackTrace();
     }
-   
+   System.out.println("Result:"+results+"Status:"+Status+"Remarks:"+Remarks);
     return this.sendtoHTMLturnOFFAll;
   }
   
