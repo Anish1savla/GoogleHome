@@ -43,8 +43,8 @@ public class SendEmailForReport {
 		try{
 			//InternetAddress from = new InternetAddress("HueGHAutomation@gmail.com");
 			message.setSubject("Google home daily test report");
-			//message.addRecipients(Message.RecipientType.TO, InternetAddress.parse("DL-QAG-US@Philips.com"));
-			message.addRecipients(Message.RecipientType.TO, InternetAddress.parse("anish.savla@Philips.com"));
+			message.addRecipients(Message.RecipientType.TO, InternetAddress.parse("DL-QAG-US@Philips.com"));
+			//message.addRecipients(Message.RecipientType.TO, InternetAddress.parse("anish.savla@Philips.com"));
 			
 			Multipart multipart = new MimeMultipart("alternative");
 			
