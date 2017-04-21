@@ -40,7 +40,7 @@ public class HBcheckAllLightsON
     
     List<PHLight> allLights1 = cache1.getAllLights();
     int numberoflights=allLights1.size();
-    long wait_time = (numberoflights*2000)+10000+5000;
+    long wait_time = (numberoflights*2000);
     long end_time = start_time+wait_time;
     System.out.println("Wait Time:"+wait_time);
     System.out.println("End_Time:"+end_time);
@@ -53,10 +53,14 @@ public class HBcheckAllLightsON
     	System.out.println("Inside DO while");
     }while((System.currentTimeMillis()-start_time)<wait_time);*/
     
+    Thread.sleep(wait_time);
+    
     do{
     	PHBridgeResourcesCache cache2 = bridge.getResourceCache();
         
         List<PHLight> allLights = cache2.getAllLights();
+        
+        
         counter++;
         for (PHLight lights : allLights)
         {
@@ -86,7 +90,7 @@ public class HBcheckAllLightsON
         System.out.println("Light list size:"+lightList.size());
 	    System.out.println("System time in mili seconds:"+System.currentTimeMillis());
 	    System.out.println("Counter Value:"+counter);
-   }while(((System.currentTimeMillis()-start_time)<wait_time) && lightList.size()!=0);
+   }while(((System.currentTimeMillis()-start_time)<30000) && lightList.size()!=0);
     
     
     if (lightList.isEmpty())

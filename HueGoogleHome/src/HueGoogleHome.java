@@ -188,7 +188,7 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
     TimeUnit.SECONDS.sleep(5);
     
     tc.turnonalllights(bridge, driver);
-    
+
     tc.turnoffalllights(bridge, driver);
    
     tc.changeColorToRed(bridge, driver);
@@ -198,6 +198,8 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
     tc.SetBrightnessTo100(bridge, driver);
 
     std.SelTurnOFFALLDummy();
+    
+    TimeUnit.SECONDS.sleep(5);
 
     tc.turnONHueColorLamp1(bridge, driver);
 
@@ -241,7 +243,7 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
    
     SendEmailForReport sendEmail = new SendEmailForReport();
     sendEmail.sendEmail();
-    
+
     driver.close();
   
     System.exit(0);
