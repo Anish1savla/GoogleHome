@@ -13,7 +13,7 @@ public class selTurnOFFHueColorLampOne
 {
   public String hbturnONHueColorLamp1;
   
-  public String selTurnOFFHueColorLamp1(PHBridge bridge, WebDriver driver)
+  public String selTurnOFFHueColorLamp1(PHBridge bridge, WebDriver driver, String utcdate)
     throws FindFailed, InterruptedException, InvalidFormatException, IOException
   {
 	  TimeUnit.SECONDS.sleep(2);
@@ -27,7 +27,7 @@ public class selTurnOFFHueColorLampOne
     turnONHueColorLamp1.type("\n");
     
     HBTurnOFFHueColorLamp1 hbturnoffcolorlamp1 = new HBTurnOFFHueColorLamp1();
-    this.hbturnONHueColorLamp1 = hbturnoffcolorlamp1.HBTurnOFFHueColorLampOne(bridge);
+    this.hbturnONHueColorLamp1 = hbturnoffcolorlamp1.HBTurnOFFHueColorLampOne(bridge,utcdate);
     
    // System.out.println("In Turn off hue color lamp one in Selenium:"+hbturnONHueColorLamp1);
     

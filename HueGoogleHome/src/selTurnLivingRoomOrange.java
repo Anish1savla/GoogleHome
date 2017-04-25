@@ -13,7 +13,7 @@ public class selTurnLivingRoomOrange {
 
 	public String LivingRoomOrange;
 	
-	public String TurnLROrange(PHBridge bridge, WebDriver driver) throws InterruptedException, FindFailed, InvalidFormatException, IOException{
+	public String TurnLROrange(PHBridge bridge, WebDriver driver, String utcdate) throws InterruptedException, FindFailed, InvalidFormatException, IOException{
 		
 		TimeUnit.SECONDS.sleep(2);
 		 Pattern commandLineImage = new Pattern("CommandLineImage.PNG");
@@ -26,7 +26,7 @@ public class selTurnLivingRoomOrange {
 		    LROrange.type("\n");
 		    
 		    HBTurnLROrange hbtlror = new HBTurnLROrange();
-		    LivingRoomOrange = hbtlror.TurnLivingRoomOrange(bridge,driver);
+		    LivingRoomOrange = hbtlror.TurnLivingRoomOrange(bridge,driver,utcdate);
 		    
 		    return LivingRoomOrange;
 		

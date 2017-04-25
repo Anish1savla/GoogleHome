@@ -13,7 +13,7 @@ public class selSetBrightnessTo100
 {
   public String HBsetBright100;
   
-  public <HBSetAllBrightessTo100> String SetBrightnessTo100(PHBridge bridge, WebDriver driver)
+  public <HBSetAllBrightessTo100> String SetBrightnessTo100(PHBridge bridge, WebDriver driver, String utcdate)
     throws FindFailed, InterruptedException, InvalidFormatException, IOException
   {
 	  TimeUnit.SECONDS.sleep(2);
@@ -27,7 +27,7 @@ public class selSetBrightnessTo100
     setBrightness100.type("\n");
     
     HBSetAllBrightnessTo100 hbtlsb = new HBSetAllBrightnessTo100();
-    return this.HBsetBright100 = hbtlsb.HBSetBrightnessTo100Percent(bridge);
+    return this.HBsetBright100 = hbtlsb.HBSetBrightnessTo100Percent(bridge,utcdate);
   }
 
 

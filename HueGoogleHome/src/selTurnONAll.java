@@ -14,7 +14,7 @@ public class selTurnONAll
 {
   String HBTurnONAllLights;
 
-  public String seleniumTestToTurnAllLightsON(PHBridge bridge, WebDriver driver)
+  public String seleniumTestToTurnAllLightsON(PHBridge bridge, WebDriver driver, String utcdate)
     throws FindFailed, IOException, InterruptedException, EncryptedDocumentException, InvalidFormatException
   {
 	/*  
@@ -66,7 +66,7 @@ public class selTurnONAll
     
     HBcheckAllLightsON hbturnonalllights = new HBcheckAllLightsON();
     
-    this.HBTurnONAllLights = hbturnonalllights.HBTurnONAllLight(bridge);
+    this.HBTurnONAllLights = hbturnonalllights.HBTurnONAllLight(bridge,utcdate);
     
     return this.HBTurnONAllLights;
   }

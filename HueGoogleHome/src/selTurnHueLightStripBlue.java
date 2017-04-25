@@ -13,7 +13,7 @@ public class selTurnHueLightStripBlue {
 
 	public String TurnHueLightStripBlue;
 	
-	public String TurnHueLightStripBlue(PHBridge bridge, WebDriver driver)throws InterruptedException, FindFailed, InvalidFormatException, IOException{
+	public String TurnHueLightStripBlue(PHBridge bridge, WebDriver driver, String utcdate)throws InterruptedException, FindFailed, InvalidFormatException, IOException{
 		TimeUnit.SECONDS.sleep(2);
 		 Pattern commandLineImage = new Pattern("CommandLineImage.PNG");
 		    
@@ -26,7 +26,7 @@ public class selTurnHueLightStripBlue {
 		    
 		    HBTurnLightStripBlue hblsb = new HBTurnLightStripBlue();
 		
-		 TurnHueLightStripBlue=hblsb.TurnLightStripToBlue(bridge, driver);
+		 TurnHueLightStripBlue=hblsb.TurnLightStripToBlue(bridge, driver,utcdate);
 		 return TurnHueLightStripBlue;
 	}
 	

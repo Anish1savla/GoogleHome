@@ -34,7 +34,7 @@ public class HBTurnOFFAllLivingRoomLights {
 	public int NewCounter;
 	public int NewCounter1;
 	
-	public String TurnOFFAllLivingRoomLights(PHBridge bridge, WebDriver driver) throws InterruptedException, FindFailed, InvalidFormatException, IOException{
+	public String TurnOFFAllLivingRoomLights(PHBridge bridge, WebDriver driver, String utcdate) throws InterruptedException, FindFailed, InvalidFormatException, IOException{
 		
 	HashMap<String,Integer> LivingRoomLights = new HashMap<String,Integer>();
 	HashMap<String,Boolean> OldAllLightState = new HashMap<String,Boolean>();
@@ -218,10 +218,11 @@ public class HBTurnOFFAllLivingRoomLights {
     
     try{
    	 String BridgeAPIVersion = bridge.getResourceCache().getBridgeConfiguration().getAPIVersion();
-   	TimeZone timeZone = TimeZone.getTimeZone("UTC");
+   	String SoftwareVersion = bridge.getResourceCache().getBridgeConfiguration().getSoftwareVersion(); 
+   /*	TimeZone timeZone = TimeZone.getTimeZone("UTC");
 		Calendar calendar = Calendar.getInstance(timeZone);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String utcdate = sdf.format(calendar.getTime());
+		String utcdate = sdf.format(calendar.getTime());*/
    	
 		Connection myConn = DriverManager.getConnection("jdbc:mysql://yy019992.code1.emi.philips.com:3306/iv_us", 
 				"iv_us_user","PaloAltoTeam");
@@ -231,13 +232,13 @@ public class HBTurnOFFAllLivingRoomLights {
 		
 		if(Status=="PASS")
 	    {
-			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
-					"Values('"+utcdate+"','17','1','All Lights Turned OFF in Living Room','"+Remarks+"','"+BridgeAPIVersion+"')";
+			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,APIVersion,SWVersion)"+
+					"Values('"+utcdate+"','17','1','All Lights Turned OFF in Living Room','"+Remarks+"','"+BridgeAPIVersion+"','"+SoftwareVersion+"')";
 			myStmt.executeUpdate(sql);
 			
 	    }else {
-			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
-					"Values('"+utcdate+"','17','0','All Lights Didnt Turned OFF in Living Room','"+Remarks+"','"+BridgeAPIVersion+"')";
+			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,APIVersion,SWVersion)"+
+					"Values('"+utcdate+"','17','0','All Lights Didnt Turned OFF in Living Room','"+Remarks+"','"+BridgeAPIVersion+"','"+SoftwareVersion+"')";
 			myStmt.executeUpdate(sql);
 	  
 	    }

@@ -4,7 +4,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 import javax.mail.MessagingException;
@@ -173,6 +175,11 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
       }*/
       
 	System.out.println("Starting Test Case Execution");
+	
+	TimeZone timeZone = TimeZone.getTimeZone("UTC");
+	Calendar calendar = Calendar.getInstance(timeZone);
+	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	String utcdate = sdf1.format(calendar.getTime());
     
     TestCases tc = new TestCases();
     
@@ -187,55 +194,55 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
     std.SelTurnOFFALLDummy();
     TimeUnit.SECONDS.sleep(5);
     
-    tc.turnonalllights(bridge, driver);
+    tc.turnonalllights(bridge, driver,utcdate);
 
-    tc.turnoffalllights(bridge, driver);
+    tc.turnoffalllights(bridge, driver,utcdate);
    
-    tc.changeColorToRed(bridge, driver);
+    tc.changeColorToRed(bridge, driver,utcdate);
     
-    tc.changeColorGreen(bridge, driver);
+    tc.changeColorGreen(bridge, driver,utcdate);
     
-    tc.SetBrightnessTo100(bridge, driver);
+    tc.SetBrightnessTo100(bridge, driver,utcdate);
 
     std.SelTurnOFFALLDummy();
     
     TimeUnit.SECONDS.sleep(5);
 
-    tc.turnONHueColorLamp1(bridge, driver);
+    tc.turnONHueColorLamp1(bridge, driver,utcdate);
 
-	tc.turnOFFHueColorLamp1(bridge, driver);
+	tc.turnOFFHueColorLamp1(bridge, driver,utcdate);
     
     b100pd.selBrightnessTo100PDummy();
 	
-    tc.DimAllLights(bridge,driver);
+    tc.DimAllLights(bridge,driver,utcdate);
     
-    tc.DimHueGo2(bridge,driver);
+    tc.DimHueGo2(bridge,driver,utcdate);
     
-    tc.SetBrightnessTo10Percent(bridge,driver);
+    tc.SetBrightnessTo10Percent(bridge,driver,utcdate);
 
-    tc.BrightenAllLightsBy10P(bridge,driver);
+    tc.BrightenAllLightsBy10P(bridge,driver,utcdate);
 
-    tc.TurnLightStripBlue(bridge,driver);
+    tc.TurnLightStripBlue(bridge,driver,utcdate);
 
     b100pd.selBrightnessTo100PDummy();
 
-    tc.DimAllLightsBy20P(bridge,driver);
+    tc.DimAllLightsBy20P(bridge,driver,utcdate);
     
-    tc.DimHueColorLamp6By30P(bridge,driver);
+    tc.DimHueColorLamp6By30P(bridge,driver,utcdate);
 
-    tc.BrightenWhiteLampBy20P(bridge,driver);
+    tc.BrightenWhiteLampBy20P(bridge,driver,utcdate);
 
     std.SelTurnOFFALLDummy();
     
-    tc.TurnONAllLivingRoomLights(bridge,driver);
+    tc.TurnONAllLivingRoomLights(bridge,driver,utcdate);
     
-    tc.TurnOFFAllLivingRoomLights(bridge,driver);
+    tc.TurnOFFAllLivingRoomLights(bridge,driver,utcdate);
 
-    tc.TurnONAmbLivingRoomLight(bridge,driver);
+    tc.TurnONAmbLivingRoomLight(bridge,driver,utcdate);
     
-    tc.TurnOFFAmbLivingRoomLight(bridge, driver);
+    tc.TurnOFFAmbLivingRoomLight(bridge, driver,utcdate);
     
-    tc.TurnLivingRoomOrange(bridge,driver);
+    tc.TurnLivingRoomOrange(bridge,driver,utcdate);
     
     std.SelTurnOFFALLDummy();
    

@@ -25,7 +25,7 @@ public class HBcheckAllLightsON
   public String sendtoHTMLturnOFFAll;
   public String Remarks;
   private PHHueSDK phHueSDK;
-  public String HBTurnONAllLight(PHBridge bridge)
+  public String HBTurnONAllLight(PHBridge bridge, String utcdate)
     throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException
   {
 	  
@@ -121,10 +121,14 @@ public class HBcheckAllLightsON
     
     try{
     	 String BridgeAPIVersion = bridge.getResourceCache().getBridgeConfiguration().getAPIVersion();
-    	TimeZone timeZone = TimeZone.getTimeZone("UTC");
+    	 
+    	 String SoftwareVersion = bridge.getResourceCache().getBridgeConfiguration().getSoftwareVersion();
+    	 
+    	 
+    	/*TimeZone timeZone = TimeZone.getTimeZone("UTC");
 		Calendar calendar = Calendar.getInstance(timeZone);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String utcdate = sdf.format(calendar.getTime());
+		String utcdate = sdf.format(calendar.getTime());*/
     	
 		Connection myConn = DriverManager.getConnection("jdbc:mysql://yy019992.code1.emi.philips.com:3306/iv_us", 
 				"iv_us_user","PaloAltoTeam");
@@ -134,15 +138,15 @@ public class HBcheckAllLightsON
 		
 		if(Status=="PASS")
 	    {
-			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
-					"Values('"+utcdate+"','1','1','All Lights Turned ON','"+Remarks+"','"+BridgeAPIVersion+"')";
+			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,APIVersion,SWVersion)"+
+					"Values('"+utcdate+"','1','1','All Lights Turned ON','"+Remarks+"','"+BridgeAPIVersion+"','"+SoftwareVersion+"')";
 			myStmt.executeUpdate(sql);
 			/*System.out.println("Putting data into excel-Inside IF");
 	    	
 	    	cdsr.ReportTurnONAllLights("PASS");*/
 	    }else {
-			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
-					"Values('"+utcdate+"','1','0','All Lights Didnt Turned ON','"+Remarks+"','"+BridgeAPIVersion+"')";
+			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,APIVersion,SWVersion)"+
+					"Values('"+utcdate+"','1','0','All Lights Didnt Turned ON','"+Remarks+"','"+BridgeAPIVersion+"','"+SoftwareVersion+"')";
 			myStmt.executeUpdate(sql);
 	    	/*System.out.println("Putting data into excel-Inside ELSE");
 	    	cdsr.ReportTurnONAllLights("FAIL");*/

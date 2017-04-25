@@ -13,7 +13,7 @@ public class selTurnONHueColorLampOne
 {
   public String hbturnONHueColorLamp1;
   
-  public String selTurnONHueColorLamp1(PHBridge bridge, WebDriver driver)
+  public String selTurnONHueColorLamp1(PHBridge bridge, WebDriver driver, String utcdate)
     throws FindFailed, InterruptedException, InvalidFormatException, IOException
   {
 	  TimeUnit.SECONDS.sleep(2);
@@ -27,7 +27,7 @@ public class selTurnONHueColorLampOne
     turnONHueColorLamp1.type("\n");
     
     HBTurnONHueColorLamp1 hbturnoncolorlamp1 = new HBTurnONHueColorLamp1();
-    this.hbturnONHueColorLamp1 = hbturnoncolorlamp1.HBTurnONhueColorLampOne(bridge);
+    this.hbturnONHueColorLamp1 = hbturnoncolorlamp1.HBTurnONhueColorLampOne(bridge,utcdate);
     
     return this.hbturnONHueColorLamp1;
   }

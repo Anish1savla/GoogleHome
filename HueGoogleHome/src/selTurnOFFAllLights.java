@@ -13,7 +13,7 @@ public class selTurnOFFAllLights
 {
   public String HBTurnOFFReturn;
   
-  public String selTurnOFFAllLight1(PHBridge bridge, WebDriver driver)
+  public String selTurnOFFAllLight1(PHBridge bridge, WebDriver driver, String utcdate)
     throws FindFailed, InterruptedException, InvalidFormatException, IOException
   {
 	  TimeUnit.SECONDS.sleep(2);
@@ -28,7 +28,7 @@ public class selTurnOFFAllLights
     
     HBcheckAllLightsOFF hboff = new HBcheckAllLightsOFF();
     
-    this.HBTurnOFFReturn = hboff.HBTurnOFFAlllight(bridge);
+    this.HBTurnOFFReturn = hboff.HBTurnOFFAlllight(bridge,utcdate);
     
     return this.HBTurnOFFReturn;
   }

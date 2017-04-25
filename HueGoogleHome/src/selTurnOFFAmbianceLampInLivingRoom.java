@@ -12,7 +12,7 @@ import com.philips.lighting.model.PHBridge;
 public class selTurnOFFAmbianceLampInLivingRoom {
 	public String TurnONAmbInLR;
 	
-	public String TurnOFFAmbianceLampInLivingRoom(PHBridge bridge, WebDriver driver) throws InterruptedException, FindFailed, InvalidFormatException, IOException{
+	public String TurnOFFAmbianceLampInLivingRoom(PHBridge bridge, WebDriver driver, String utcdate) throws InterruptedException, FindFailed, InvalidFormatException, IOException{
 		
 		TimeUnit.SECONDS.sleep(2);
 		Pattern commandLineImage = new Pattern("CommandLineImage.PNG");
@@ -26,7 +26,7 @@ public class selTurnOFFAmbianceLampInLivingRoom {
 	    turnONAmbLivingRoom.type("\n");
 		
 	    HBTurnOFFAmbLivingRoom hbtoffamb = new HBTurnOFFAmbLivingRoom(); 
-	    TurnONAmbInLR = hbtoffamb.TurnOFFAmbianceLivingRoom(bridge,driver);
+	    TurnONAmbInLR = hbtoffamb.TurnOFFAmbianceLivingRoom(bridge,driver,utcdate);
 	    
 		return TurnONAmbInLR;
 	}

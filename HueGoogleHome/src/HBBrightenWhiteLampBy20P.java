@@ -31,7 +31,7 @@ public class HBBrightenWhiteLampBy20P {
 	public int OldWhiteLampBrightness;
 	public int NewWhiteLampBrightness;
 	
-	public String BrightenWhiteLampBy20P(PHBridge bridge, WebDriver driver) throws FindFailed, InterruptedException, InvalidFormatException, IOException{
+	public String BrightenWhiteLampBy20P(PHBridge bridge, WebDriver driver, String utcdate) throws FindFailed, InterruptedException, InvalidFormatException, IOException{
 		
 		PHBridgeResourcesCache cache = bridge.getResourceCache();
 	    
@@ -170,10 +170,14 @@ public class HBBrightenWhiteLampBy20P {
 	    
 	    try{
 	    	 String BridgeAPIVersion = bridge.getResourceCache().getBridgeConfiguration().getAPIVersion();
-	    	TimeZone timeZone = TimeZone.getTimeZone("UTC");
+	    	 
+	    	 String SoftwareVersion = bridge.getResourceCache().getBridgeConfiguration().getSoftwareVersion(); 
+
+	    	 
+	    /*	TimeZone timeZone = TimeZone.getTimeZone("UTC");
 			Calendar calendar = Calendar.getInstance(timeZone);
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String utcdate = sdf.format(calendar.getTime());
+			String utcdate = sdf.format(calendar.getTime());*/
 	    	
 			Connection myConn = DriverManager.getConnection("jdbc:mysql://yy019992.code1.emi.philips.com:3306/iv_us", 
 					"iv_us_user","PaloAltoTeam");
@@ -183,13 +187,13 @@ public class HBBrightenWhiteLampBy20P {
 			
 			if(Status=="PASS")
 		    {
-				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
-						"Values('"+utcdate+"','15','1','White Lamp Brightned By 20%','"+Remarks+"','"+BridgeAPIVersion+"')";
+				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,APIVersion,SWVersion)"+
+						"Values('"+utcdate+"','15','1','White Lamp Brightned By 20%','"+Remarks+"','"+BridgeAPIVersion+"' ,'"+SoftwareVersion+"')";
 				myStmt.executeUpdate(sql);
 				
 		    }else {
-				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
-						"Values('"+utcdate+"','15','0','White Lamp Didnt Brightned By 20%','"+Remarks+"','"+BridgeAPIVersion+"')";
+				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,APIVersion,SWVersion)"+
+						"Values('"+utcdate+"','15','0','White Lamp Didnt Brightned By 20%','"+Remarks+"','"+BridgeAPIVersion+"' ,'"+SoftwareVersion+"')";
 				myStmt.executeUpdate(sql);
 		    	
 		    }

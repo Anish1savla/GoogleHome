@@ -27,7 +27,7 @@ public class HBTurnONAmbLivingRoom {
 	public String Remarks;
 	public String SendToHTML;
 	
-	public String TurnONAmbianceLivingRoom(PHBridge bridge, WebDriver driver) throws InterruptedException, InvalidFormatException, IOException{
+	public String TurnONAmbianceLivingRoom(PHBridge bridge, WebDriver driver, String utcdate) throws InterruptedException, InvalidFormatException, IOException{
 		
 		System.out.println("******************** TURN ON AMBIANCE LAMP IN LIVING ROOM **********************");
 		
@@ -80,10 +80,11 @@ public class HBTurnONAmbLivingRoom {
 	    
 	    try{
 	    	 String BridgeAPIVersion = bridge.getResourceCache().getBridgeConfiguration().getAPIVersion();
-	    	TimeZone timeZone = TimeZone.getTimeZone("UTC");
+	    	 String SoftwareVersion = bridge.getResourceCache().getBridgeConfiguration().getSoftwareVersion(); 
+	    	/*TimeZone timeZone = TimeZone.getTimeZone("UTC");
 			Calendar calendar = Calendar.getInstance(timeZone);
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String utcdate = sdf.format(calendar.getTime());
+			String utcdate = sdf.format(calendar.getTime());*/
 	    	
 			Connection myConn = DriverManager.getConnection("jdbc:mysql://yy019992.code1.emi.philips.com:3306/iv_us", 
 					"iv_us_user","PaloAltoTeam");
@@ -93,12 +94,12 @@ public class HBTurnONAmbLivingRoom {
 			
 			if(Status=="PASS")
 		    {
-				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
-						"Values('"+utcdate+"','18','1','Hue Ambiance Lamp 1 in Living Room is Turned ON','"+Remarks+"','"+BridgeAPIVersion+"')";
+				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason, APIVersion,SWVersion)"+
+						"Values('"+utcdate+"','18','1','Hue Ambiance Lamp 1 in Living Room is Turned ON','"+Remarks+"','"+BridgeAPIVersion+"','"+SoftwareVersion+"')";
 				myStmt.executeUpdate(sql);
 		    }else {
-				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
-						"Values('"+utcdate+"','18','0','Hue Ambiance Lamp 1 in Living Room Didnt Turned ON','"+Remarks+"','"+BridgeAPIVersion+"')";
+				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason, APIVersion,SWVersion)"+
+						"Values('"+utcdate+"','18','0','Hue Ambiance Lamp 1 in Living Room Didnt Turned ON','"+Remarks+"','"+BridgeAPIVersion+"','"+SoftwareVersion+"')";
 				myStmt.executeUpdate(sql);
 
 		    }

@@ -32,7 +32,7 @@ public class HBBrightenAllLightsBy10P {
 	public String htmlFinalResults;
 
 	
-	public String BrightenAllLights(PHBridge bridge, WebDriver driver) throws FindFailed, InterruptedException, InvalidFormatException, IOException{
+	public String BrightenAllLights(PHBridge bridge, WebDriver driver, String utcdate) throws FindFailed, InterruptedException, InvalidFormatException, IOException{
 		
 		System.out.println("/*************************** INSIDE BRIGHTEN ALL LIGHTS By 10% class *********************************/");
 	    
@@ -133,10 +133,12 @@ public class HBBrightenAllLightsBy10P {
 		    
 		    try{
 		    	 String BridgeAPIVersion = bridge.getResourceCache().getBridgeConfiguration().getAPIVersion();
-		    	TimeZone timeZone = TimeZone.getTimeZone("UTC");
+		    	 
+		    	 String SoftwareVersion = bridge.getResourceCache().getBridgeConfiguration().getSoftwareVersion();
+		    /*	TimeZone timeZone = TimeZone.getTimeZone("UTC");
 				Calendar calendar = Calendar.getInstance(timeZone);
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				String utcdate = sdf.format(calendar.getTime());
+				String utcdate = sdf.format(calendar.getTime());*/
 		    	
 				Connection myConn = DriverManager.getConnection("jdbc:mysql://yy019992.code1.emi.philips.com:3306/iv_us", 
 						"iv_us_user","PaloAltoTeam");
@@ -146,13 +148,13 @@ public class HBBrightenAllLightsBy10P {
 				
 				if(Status=="PASS")
 			    {
-					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
-							"Values('"+utcdate+"','11','1','All Lights brightned by 10%','"+Remarks+"','"+BridgeAPIVersion+"')";
+					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,APIVersion,SWVersion)"+
+							"Values('"+utcdate+"','11','1','All Lights brightned by 10%','"+Remarks+"','"+BridgeAPIVersion+"' ,'"+SoftwareVersion+"')";
 					myStmt.executeUpdate(sql);
 					
 			    }else {
-					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
-							"Values('"+utcdate+"','11','0','All Lights Didnt brightned by 10%','"+Remarks+"','"+BridgeAPIVersion+"')";
+					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,APIVersion,SWVersion)"+
+							"Values('"+utcdate+"','11','0','All Lights Didnt brightned by 10%','"+Remarks+"','"+BridgeAPIVersion+"' ,'"+SoftwareVersion+"')";
 					myStmt.executeUpdate(sql);
 			    
 			    }

@@ -45,7 +45,7 @@ public class HBDimHueGo2 {
     //List<String> FalseLights = new ArrayList<String>();
     List<String> nonReachableLights = new ArrayList<String>();
 	
-	public String DimHueGo2(PHBridge bridge, WebDriver driver) throws InterruptedException, FindFailed, InvalidFormatException, IOException{
+	public String DimHueGo2(PHBridge bridge, WebDriver driver, String utcdate) throws InterruptedException, FindFailed, InvalidFormatException, IOException{
 		System.out.println("/***************************Inside Hue Bridge Dim Hue Go 2 class*********************************/");
 		
 		HashMap<String,Integer> TrueLights = new HashMap<String,Integer>();
@@ -190,10 +190,11 @@ public class HBDimHueGo2 {
 		  
 		  try{
 		    	 String BridgeAPIVersion = bridge.getResourceCache().getBridgeConfiguration().getAPIVersion();
-		    	TimeZone timeZone = TimeZone.getTimeZone("UTC");
+		    	 String SoftwareVersion = bridge.getResourceCache().getBridgeConfiguration().getSoftwareVersion(); 
+		/*    	TimeZone timeZone = TimeZone.getTimeZone("UTC");
 				Calendar calendar = Calendar.getInstance(timeZone);
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				String utcdate = sdf.format(calendar.getTime());
+				String utcdate = sdf.format(calendar.getTime());*/
 		    	
 				Connection myConn = DriverManager.getConnection("jdbc:mysql://yy019992.code1.emi.philips.com:3306/iv_us", 
 						"iv_us_user","PaloAltoTeam");
@@ -203,15 +204,15 @@ public class HBDimHueGo2 {
 				
 				if(Status=="PASS")
 			    {
-					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
-							"Values('"+utcdate+"','9','1','Hue Go 2 Dimmed by 40% of original Brightness level','"+Remarks+"','"+BridgeAPIVersion+"')";
+					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,APIVersion,SWVersion)"+
+							"Values('"+utcdate+"','9','1','Hue Go 2 Dimmed by 40% of original Brightness level','"+Remarks+"','"+BridgeAPIVersion+"' ,'"+SoftwareVersion+"')";
 					myStmt.executeUpdate(sql);
 					/*System.out.println("Putting data into excel-Inside IF");
 			    	
 			    	cdsr.ReportTurnONAllLights("PASS");*/
 			    }else {
-					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
-							"Values('"+utcdate+"','9','0','Hue Go 2 Dimmed by 40% of original Brightness level','"+Remarks+"','"+BridgeAPIVersion+"')";
+					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,APIVersion,SWVersion)"+
+							"Values('"+utcdate+"','9','0','Hue Go 2 Dimmed by 40% of original Brightness level','"+Remarks+"','"+BridgeAPIVersion+"' ,'"+SoftwareVersion+"')";
 					myStmt.executeUpdate(sql);
 			   /* 	System.out.println("Putting data into excel-Inside ELSE");
 			    	cdsr.ReportTurnONAllLights("FAIL");*/

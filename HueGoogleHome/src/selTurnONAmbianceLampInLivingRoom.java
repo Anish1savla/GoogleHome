@@ -13,7 +13,7 @@ public class selTurnONAmbianceLampInLivingRoom {
 
 	public String TurnONAmbInLR;
 	
-	public String TurnONAmbianceLampInLivingRoom(PHBridge bridge, WebDriver driver) throws InterruptedException, FindFailed, InvalidFormatException, IOException{
+	public String TurnONAmbianceLampInLivingRoom(PHBridge bridge, WebDriver driver, String utcdate) throws InterruptedException, FindFailed, InvalidFormatException, IOException{
 		
 		TimeUnit.SECONDS.sleep(2);
 		Pattern commandLineImage = new Pattern("CommandLineImage.PNG");
@@ -27,7 +27,7 @@ public class selTurnONAmbianceLampInLivingRoom {
 	    turnONAmbLivingRoom.type("\n");
 		
 	    HBTurnONAmbLivingRoom hbtonamb = new HBTurnONAmbLivingRoom(); 
-	    TurnONAmbInLR = hbtonamb.TurnONAmbianceLivingRoom(bridge,driver);
+	    TurnONAmbInLR = hbtonamb.TurnONAmbianceLivingRoom(bridge,driver,utcdate);
 	    
 		return TurnONAmbInLR;
 	}

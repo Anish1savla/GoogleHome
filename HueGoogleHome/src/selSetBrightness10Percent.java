@@ -13,7 +13,7 @@ public class selSetBrightness10Percent {
 
 	public String SetBrightnessto10;
 	
-	public String SetBrightness10Percent(PHBridge bridge, WebDriver driver) throws InterruptedException, FindFailed, InvalidFormatException, IOException{
+	public String SetBrightness10Percent(PHBridge bridge, WebDriver driver, String utcdate) throws InterruptedException, FindFailed, InvalidFormatException, IOException{
 		TimeUnit.SECONDS.sleep(2);
 		 Pattern commandLineImage = new Pattern("CommandLineImage.PNG");
 		    
@@ -25,7 +25,7 @@ public class selSetBrightness10Percent {
 		    setBrightness10Percent.type("\n");
 		    
 		    HBSetBrightnessTo10Percent hbsetbrightness10percent = new HBSetBrightnessTo10Percent();
-		    SetBrightnessto10 = hbsetbrightness10percent.SetBrightness10Percent(bridge,driver);
+		    SetBrightnessto10 = hbsetbrightness10percent.SetBrightness10Percent(bridge,driver,utcdate);
 		    
 		    //System.out.println("In Turn off hue color lamp one in Selenium:"+SetBrightnessto10);
 		    

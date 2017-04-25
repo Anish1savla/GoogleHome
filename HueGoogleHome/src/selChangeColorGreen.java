@@ -13,7 +13,7 @@ public class selChangeColorGreen
 {
   String returnChangeColorGreen;
   
-  public String selChangeColorToRed(PHBridge bridge, WebDriver driver)
+  public String selChangeColorToRed(PHBridge bridge, WebDriver driver, String utcdate)
     throws FindFailed, InterruptedException, InvalidFormatException, IOException
   {
     System.out.println("Inside selenium change red color");
@@ -30,7 +30,7 @@ public class selChangeColorGreen
     HBCheckAllLightsGreen hballgreen = new HBCheckAllLightsGreen();
     
     System.out.println("Now calling HB check for Red lights");
-    this.returnChangeColorGreen = hballgreen.HBCheckAllLightsToGreen(bridge);
+    this.returnChangeColorGreen = hballgreen.HBCheckAllLightsToGreen(bridge,utcdate);
     
     return this.returnChangeColorGreen;
   }

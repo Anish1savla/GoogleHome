@@ -28,7 +28,7 @@ public class HBTurnLightStripBlue {
 	public String HTMLFinalResults;
 	public String LightName = "Hue LightStrip Plus 1";
 	
-	public String TurnLightStripToBlue(PHBridge bridge, WebDriver driver) throws InterruptedException, InvalidFormatException, IOException{
+	public String TurnLightStripToBlue(PHBridge bridge, WebDriver driver, String utcdate) throws InterruptedException, InvalidFormatException, IOException{
 		
 		System.out.println("******************** TURN LIGHT STRIP BLUE **********************");
 		
@@ -94,10 +94,11 @@ public class HBTurnLightStripBlue {
 	    
 	    try{
 	    	 String BridgeAPIVersion = bridge.getResourceCache().getBridgeConfiguration().getAPIVersion();
-	    	TimeZone timeZone = TimeZone.getTimeZone("UTC");
+	    	 String SoftwareVersion = bridge.getResourceCache().getBridgeConfiguration().getSoftwareVersion();
+	  /*  	TimeZone timeZone = TimeZone.getTimeZone("UTC");
 			Calendar calendar = Calendar.getInstance(timeZone);
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String utcdate = sdf.format(calendar.getTime());
+			String utcdate = sdf.format(calendar.getTime());*/
 	    	
 			Connection myConn = DriverManager.getConnection("jdbc:mysql://yy019992.code1.emi.philips.com:3306/iv_us", 
 					"iv_us_user","PaloAltoTeam");
@@ -107,13 +108,13 @@ public class HBTurnLightStripBlue {
 			
 			if(Status=="PASS")
 		    {
-				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
-						"Values('"+utcdate+"','12','1','Hue Light Strip Plus 1 Turned Blue','"+Remarks+"','"+BridgeAPIVersion+"')";
+				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,APIVersion,SWVersion)"+
+						"Values('"+utcdate+"','12','1','Hue Light Strip Plus 1 Turned Blue','"+Remarks+"','"+BridgeAPIVersion+"' ,'"+SoftwareVersion+"')";
 				myStmt.executeUpdate(sql);
 
 		    }else {
-				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
-						"Values('"+utcdate+"','12','0','Hue Light Strip Plus 1 Didnt Turned Blue','"+Remarks+"','"+BridgeAPIVersion+"')";
+				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,APIVersion,SWVersion)"+
+						"Values('"+utcdate+"','12','0','Hue Light Strip Plus 1 Didnt Turned Blue','"+Remarks+"','"+BridgeAPIVersion+"' ,'"+SoftwareVersion+"')";
 				myStmt.executeUpdate(sql);
 
 		    }
