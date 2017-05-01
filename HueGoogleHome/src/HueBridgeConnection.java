@@ -23,7 +23,7 @@ public class HueBridgeConnection
   public String lastknownUserName = "lastusername";
   public String lastKnownIPAddress = "lastIPAddress";
   
-  public void connectToBridgeWithIp(String ipAddress,String userNameStored, ConnectCallback connectCallback)
+  public void connectToBridgeWithIp(String ipAddress,String userNameStored,ConnectCallback connectCallback)
   {
     phHueSDK = PHHueSDK.create();
     phHueSDK.getNotificationManager().registerSDKListener(listener);
@@ -61,7 +61,7 @@ public class HueBridgeConnection
       String lastConnectedUsername = bridge.getResourceCache().getBridgeConfiguration().getUsername();
       String lastConnectedipAddress = bridge.getResourceCache().getBridgeConfiguration().getIpAddress();
       
-      File PropertyFile = new File("C:\\Users\\310235474\\git\\GoogleHome1.0\\BridgeProperty.txt");
+      File PropertyFile = new File("C:\\Users\\310235474\\git\\GoogleHomeBL\\HueGoogleHome\\BridgeProperty.txt");
       try
       {
         PropertyFile.createNewFile();

@@ -69,13 +69,13 @@ public class HueGoogleHome
     {
     	
       HueBridgeConnection bh = new HueBridgeConnection();
-      File BridgeConnectionFile = new File("C:\\Users\\310235474\\git\\GoogleHome1.0\\BridgeProperty.txt");
+      File BridgeConnectionFile = new File("C:\\Users\\310235474\\git\\GoogleHomeBL\\HueGoogleHome\\BridgeProperty.txt");
        
       
        if (BridgeConnectionFile.exists()==true){
        
 
-		BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\310235474\\git\\GoogleHome1.0\\BridgeProperty.txt"));
+		BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\310235474\\git\\GoogleHomeBL\\HueGoogleHome\\BridgeProperty.txt"));
     	  String userNamefromText;
     	  int CounterExecution=0;
     	  while ((userNamefromText = br.readLine()) != null)
@@ -96,9 +96,10 @@ public class HueGoogleHome
             System.out.println(CounterExecution+": Counter Execution");
           }
     	  bh.connectToBridgeWithIp(ipAddressStored,userNameStored,connectCallback);
+    	  //bh.connectToBridgeWithIp(ipAddressStored,connectCallback);
       }else {
-    	  //bh.connectToBridgeWithIp("192.168.84.47",connectCallback);
-    	  bh.connectToBridgeWithIp("192.168.84.47"," ",connectCallback);
+    	  //bh.connectToBridgeWithIp("192.168.84.20",connectCallback);
+    	  bh.connectToBridgeWithIp("192.168.84.20"," ",connectCallback);
     	    TimeUnit.SECONDS.sleep(5);
     	   // System.out.println("Hue Bridge connection is done");
       }
