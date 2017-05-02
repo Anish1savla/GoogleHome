@@ -98,8 +98,8 @@ public class HueGoogleHome
     	  bh.connectToBridgeWithIp(ipAddressStored,userNameStored,connectCallback);
     	  //bh.connectToBridgeWithIp(ipAddressStored,connectCallback);
       }else {
-    	  //bh.connectToBridgeWithIp("192.168.84.20",connectCallback);
-    	  bh.connectToBridgeWithIp("192.168.84.20"," ",connectCallback);
+    	  //bh.connectToBridgeWithIp("192.168.86.23",connectCallback);
+    	  bh.connectToBridgeWithIp("192.168.86.23"," ",connectCallback);
     	    TimeUnit.SECONDS.sleep(5);
     	   // System.out.println("Hue Bridge connection is done");
       }
