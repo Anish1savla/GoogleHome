@@ -95,11 +95,11 @@ public class HueGoogleHome
             CounterExecution++;
             System.out.println(CounterExecution+": Counter Execution");
           }
-    	  bh.connectToBridgeWithIp(ipAddressStored,userNameStored,connectCallback);
-    	  //bh.connectToBridgeWithIp(ipAddressStored,connectCallback);
+    	  //bh.connectToBridgeWithIp(ipAddressStored,userNameStored,connectCallback);
+    	  bh.connectToBridgeWithIp(ipAddressStored,connectCallback);
       }else {
-    	  //bh.connectToBridgeWithIp("192.168.86.23",connectCallback);
-    	  bh.connectToBridgeWithIp("192.168.86.23"," ",connectCallback);
+    	  bh.connectToBridgeWithIp("192.168.86.20",connectCallback);
+    	  //bh.connectToBridgeWithIp("192.168.86.20"," ",connectCallback);
     	    TimeUnit.SECONDS.sleep(5);
     	   // System.out.println("Hue Bridge connection is done");
       }
