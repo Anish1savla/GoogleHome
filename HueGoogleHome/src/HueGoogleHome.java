@@ -95,11 +95,11 @@ public class HueGoogleHome
             CounterExecution++;
             System.out.println(CounterExecution+": Counter Execution");
           }
-    	  //bh.connectToBridgeWithIp(ipAddressStored,userNameStored,connectCallback);
-    	  bh.connectToBridgeWithIp(ipAddressStored,connectCallback);
+    	  bh.connectToBridgeWithIp(ipAddressStored,userNameStored,connectCallback);
+    	  //bh.connectToBridgeWithIp(ipAddressStored,connectCallback);
       }else {
-    	  bh.connectToBridgeWithIp("192.168.86.20",connectCallback);
-    	  //bh.connectToBridgeWithIp("192.168.86.20"," ",connectCallback);
+    	  //bh.connectToBridgeWithIp("192.168.86.20",connectCallback);
+    	  bh.connectToBridgeWithIp("192.168.86.20"," ",connectCallback);
     	    TimeUnit.SECONDS.sleep(5);
     	   // System.out.println("Hue Bridge connection is done");
       }
@@ -140,16 +140,20 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
         driver.switchTo().window(winHandle);
       }
       driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-      driver.findElement(By.xpath("//*[@id='Email']")).click();
-      driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-      driver.findElement(By.xpath("//*[@id='Email']")).sendKeys(new CharSequence[] { "HueGHAutomation@gmail.com" });
-      driver.manage().timeouts().implicitlyWait(1L, TimeUnit.SECONDS);
-      driver.findElement(By.id("next")).click();
-      driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-      driver.findElement(By.xpath("//*[@id='Passwd']")).sendKeys(new CharSequence[] { "HueAutomation" });
-      driver.findElement(By.xpath("//*[@id='PersistentCookie']")).click();
-      driver.findElement(By.id("signIn")).click();
+      driver.findElement(By.xpath("//*[@id='identifierId']")).click();
+      driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+      driver.findElement(By.xpath("//*[@id='identifierId']")).sendKeys(new CharSequence[] { "HueGHAutomation@gmail.com" });
+      driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+      driver.findElement(By.id("identifierNext")).click();
       
+      TimeUnit.SECONDS.sleep(3);
+      Pattern image2 = new Pattern("EnterPassword.PNG");
+      Screen screen1 = new Screen();
+      screen1.mouseMove(image2);
+      screen1.click(image2);
+      System.out.println("Click Done");
+      screen1.type("HueAutomation");
+      screen1.type("\n");
       driver.switchTo().window(winHandleBefore);
   
   }
