@@ -139,14 +139,14 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
       for (String winHandle : driver.getWindowHandles()) {
         driver.switchTo().window(winHandle);
       }
-      driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+      driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
       driver.findElement(By.xpath("//*[@id='identifierId']")).click();
-      driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+      driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
       driver.findElement(By.xpath("//*[@id='identifierId']")).sendKeys(new CharSequence[] { "HueGHAutomation@gmail.com" });
-      driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+      driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
       driver.findElement(By.id("identifierNext")).click();
       
-      TimeUnit.SECONDS.sleep(3);
+      TimeUnit.SECONDS.sleep(5);
       Pattern image2 = new Pattern("EnterPassword.PNG");
       Screen screen1 = new Screen();
       screen1.mouseMove(image2);
@@ -195,9 +195,9 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
     //System.out.println("API Version of Bridge:"+APIVersion);
     
     
-    
+    TimeUnit.SECONDS.sleep(20);
+
     std.SelTurnOFFALLDummy();
-    TimeUnit.SECONDS.sleep(15);
     
     tc.turnonalllights(bridge, driver,utcdate);
 
