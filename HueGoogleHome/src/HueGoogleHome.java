@@ -139,7 +139,7 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
       for (String winHandle : driver.getWindowHandles()) {
         driver.switchTo().window(winHandle);
       }
-      driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+      driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
       driver.findElement(By.xpath("//*[@id='identifierId']")).click();
       driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
       driver.findElement(By.xpath("//*[@id='identifierId']")).sendKeys(new CharSequence[] { "HueGHAutomation@gmail.com" });
