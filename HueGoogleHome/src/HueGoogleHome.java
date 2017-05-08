@@ -197,7 +197,7 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
     
     
     std.SelTurnOFFALLDummy();
-    TimeUnit.SECONDS.sleep(5);
+    TimeUnit.SECONDS.sleep(15);
     
     tc.turnonalllights(bridge, driver,utcdate);
 
