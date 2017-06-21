@@ -1,22 +1,18 @@
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+
 import com.philips.lighting.hue.sdk.PHHueSDK;
 import com.philips.lighting.model.PHBridge;
 import com.philips.lighting.model.PHBridgeResourcesCache;
 import com.philips.lighting.model.PHLight;
 import com.philips.lighting.model.PHLightState;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import org.apache.poi.EncryptedDocumentException;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-
-import java.util.Properties;
-import java.util.TimeZone;
-import java.sql.*;
-import java.text.SimpleDateFormat;
 public class HBcheckAllLightsON
 {
   public static int counter = 0;
@@ -35,7 +31,6 @@ public class HBcheckAllLightsON
 	  
 	long start_time = System.currentTimeMillis();
 	
-			
     PHBridgeResourcesCache cache1 = bridge.getResourceCache();
     
     List<PHLight> allLights1 = cache1.getAllLights();

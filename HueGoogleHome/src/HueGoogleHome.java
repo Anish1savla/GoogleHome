@@ -169,15 +169,7 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
       SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
       //String time = (sdf.format(date));
       
-   /*   if((sdf.parse(sdf.format(date)).after(sdf.parse("11:40:00"))) 
-    		  && (sdf.parse(sdf.format(date)).before(sdf.parse("11:45:00"))))
-      {	
-    	  System.out.println("Inside IF to create Daily Report");
-    	  DailyReport spreadsheet = new DailyReport();
-          spreadsheet.createSpreadsheetForDailyReport();  
-      }else{
-    	  System.out.println("Inside ELSE to create Daily Report");
-      }*/
+
       
 	System.out.println("Starting Test Case Execution");
 	
@@ -191,9 +183,6 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
     selTurnOFFDummy std = new selTurnOFFDummy();
     
     selBrightness100PDummy b100pd = new selBrightness100PDummy();
-    //String APIVersion = bridge.getResourceCache().getBridgeConfiguration().getAPIVersion();
-    //System.out.println("API Version of Bridge:"+APIVersion);
-    
     
     TimeUnit.SECONDS.sleep(20);
 

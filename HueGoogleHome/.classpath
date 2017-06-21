@@ -53,5 +53,7 @@
 	<classpathentry kind="lib" path="C:/Users/310235474/Downloads/huelocalsdk.jar"/>
 	<classpathentry kind="lib" path="C:/Users/310235474/Downloads/huesdkresources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/310235474/Downloads/javax.mail-1.4.5.jar/javax.mail-1.4.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/310235474/Downloads/sikulix.jar"/>
+	<classpathentry kind="lib" path="C:/Users/310235474/Downloads/sikulixapi.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
